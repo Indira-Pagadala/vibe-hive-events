@@ -42,7 +42,7 @@ const Events = () => {
     setFilteredEvents(filtered);
   }, [categoryParam, locationParam]);
 
-  const handleFilter = (filters) => {
+  const handleFilter = (filters: any) => {
     let filtered = [...eventData];
     
     if (filters.search) {
@@ -79,7 +79,7 @@ const Events = () => {
     setFilteredEvents(filtered);
   };
   
-  const handleSortChange = (value) => {
+  const handleSortChange = (value: string) => {
     setSortBy(value);
     let sorted = [...filteredEvents];
     
@@ -127,8 +127,8 @@ const Events = () => {
                 categories={categories} 
                 locations={locations} 
                 onFilter={handleFilter}
-                initialCategory={categoryParam}
-                initialLocation={locationParam}
+                initialCategory={categoryParam || ''}
+                initialLocation={locationParam || ''}
               />
               
               <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mt-6 pt-4 border-t border-border">

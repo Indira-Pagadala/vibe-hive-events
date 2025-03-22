@@ -49,11 +49,11 @@ const TicketSelection = ({ tickets, currency, eventTitle, eventDate, onBookingCo
   const handlePaymentSuccess = () => {
     setShowPayment(false);
     
-    // Show success toast
+    // Show success toast - changed to use 'default' variant instead of 'success'
     toast({
       title: "Booking successful!",
       description: `Your tickets for ${eventTitle} have been booked.`,
-      variant: "success",
+      variant: "default", // Changed from 'success' to 'default'
     });
     
     // Generate QR code

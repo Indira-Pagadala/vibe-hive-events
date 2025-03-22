@@ -1,10 +1,12 @@
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Search, MapPin, Tag, DollarSign, SlidersHorizontal, X } from 'lucide-react';
 
 interface FilterBarProps {
   categories: string[];
   locations: string[];
+  initialCategory?: string;  // Make initialCategory optional
+  initialLocation?: string;  // Make initialLocation optional
   onFilter: (filters: {
     search: string;
     location: string;
@@ -13,12 +15,27 @@ interface FilterBarProps {
   }) => void;
 }
 
-const FilterBar = ({ categories, locations, onFilter }: FilterBarProps) => {
+const FilterBar = ({ 
+  categories, 
+  locations, 
+  initialCategory = '', 
+  initialLocation = '', 
+  onFilter 
+}: FilterBarProps) => {
   const [search, setSearch] = useState('');
-  const [location, setLocation] = useState('');
-  const [category, setCategory] = useState('');
+  const [location, setLocation] = useState(initialLocation || '');
+  const [category, setCategory] = useState(initialCategory || '');
   const [price, setPrice] = useState<number | null>(null);
   const [isExpanded, setIsExpanded] = useState(false);
+
+  // Apply initial filters when component mounts or initialCategory/initialLocation changes
+  useEffect(() => {
+    if (initialCategory || initialLocation) {
+      setCategory(initialCategory || '');
+      setLocation(initialLocation || '');
+      onFilter({ search, location: initialLocation || '', category: initialCategory || '', price });
+    }
+  }, [initialCategory, initialLocation]);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
