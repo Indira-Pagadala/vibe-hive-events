@@ -13,8 +13,8 @@ const Index = () => {
   const [featuredEvents, setFeaturedEvents] = useState([]);
   
   // Extract unique categories and locations from data
-  const categories = [...new Set(eventData.map(event => event.category))];
-  const locations = [...new Set(eventData.map(event => event.location))];
+  const categories = [...new Set(eventData.map(event => event.category))] as string[];
+  const locations = [...new Set(eventData.map(event => event.location))] as string[];
 
   useEffect(() => {
     // Get featured events

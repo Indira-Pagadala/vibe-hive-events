@@ -56,7 +56,12 @@ const EventDetail = () => {
   }, [id]);
   
   const formatDate = (dateString) => {
-    const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+    const options = { 
+      weekday: 'long' as const, 
+      year: 'numeric' as const, 
+      month: 'long' as const, 
+      day: 'numeric' as const 
+    };
     return new Date(dateString).toLocaleDateString('en-US', options);
   };
   

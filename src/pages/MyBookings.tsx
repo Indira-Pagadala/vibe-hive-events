@@ -83,7 +83,11 @@ const MyBookings = () => {
   };
   
   const formatDate = (dateString) => {
-    const options = { year: 'numeric', month: 'long', day: 'numeric' };
+    const options = { 
+      year: 'numeric' as const, 
+      month: 'long' as const, 
+      day: 'numeric' as const 
+    };
     return new Date(dateString).toLocaleDateString('en-US', options);
   };
   
